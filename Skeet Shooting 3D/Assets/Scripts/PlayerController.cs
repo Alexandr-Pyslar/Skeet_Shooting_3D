@@ -5,41 +5,75 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Vector3 lastPosition;
-    public float speed = 2f;
-    private float limitX = 15f;
-    private float limitY = 8.8f;
+    public float speed = 5f;
+    private float limitX = 50f;
+    private float limitY = 50f;
 
-    Quaternion originQuaternion;
-    float angleHorizontal;
-    float angleVertical;
-    float mouseX;
-    float mouseSense = 5;
-    // Start is called before the first frame update
+    private Quaternion originQuaternion;
+    float dirX;
+    float dirY;
+   // public float sense = 0.5f;
+
     void Start()
     {
         originQuaternion = transform.rotation;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
-        transform.Translate(new Vector3(moveX, 0, moveZ) * 5 * Time.deltaTime);
+        transform.Translate(new Vector3(moveX, 0, moveZ) * speed * Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
-        if (Input.GetMouseButton(0))
-        {
-            angleHorizontal += Input.GetAxis("Mouse X") * mouseSense;
-            angleVertical += Input.GetAxis("Mouse Y") * mouseSense;
+        //RotateCam1();
+        RotateCam2();
+    }
 
-            angleVertical = Mathf.Clamp(angleVertical, -50, 50);
-            Quaternion rotationY = Quaternion.AngleAxis(angleHorizontal, Vector3.up);
-            Quaternion rotationX = Quaternion.AngleAxis(-angleVertical, Vector3.right);
-            transform.rotation = originQuaternion * rotationY * rotationX;
+    private void RotateCam1 ()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            lastPosition = Input.mousePosition;
         }
 
+        if (Input.GetMouseButton(0))
+        {
+            float dirX = Input.mousePosition.x - lastPosition.x;
+            float dirY = Input.mousePosition.y - lastPosition.y;
+
+            dirX = Mathf.Clamp(dirX, -limitX, limitX);
+            dirY = Mathf.Clamp(dirY, -limitY, limitY);
+
+            Quaternion rotationY = Quaternion.AngleAxis(dirX, Vector3.up);
+            Quaternion rotationX = Quaternion.AngleAxis(-dirY, Vector3.right);
+            transform.rotation = originQuaternion * rotationY * rotationX;
+        }
     }
+
+    private void RotateCam2()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            //Если точка клика равна начальной позиции камеры, то ничего не делать. Иначе
+
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            dirX += Input.GetAxis("Mouse X") * speed;
+            dirY += Input.GetAxis("Mouse Y") * speed;
+
+
+            dirY = Mathf.Clamp(dirY, -limitY, limitY);
+
+            Quaternion rotationY = Quaternion.AngleAxis(dirX, Vector3.up);
+            Quaternion rotationX = Quaternion.AngleAxis(-dirY, Vector3.right);
+            transform.rotation = originQuaternion * rotationY * rotationX;
+        }
+    }
+
 }
