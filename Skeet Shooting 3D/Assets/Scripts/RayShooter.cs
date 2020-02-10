@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class RayShooter : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class RayShooter : MonoBehaviour
     public static bool inAim = false;
     public GameObject platePrefab;
     public ParticleSystem dirtParticle;
+    public Text textDistance;
 
 
     // Start is called before the first frame update
@@ -25,14 +28,13 @@ public class RayShooter : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(point);
         RaycastHit hit;
 
-
         if (Physics.Raycast(ray, out hit) && hit.transform.gameObject.tag == "Target") 
         {
 
             inAim = true;
-            if (ProgressBar.readyToShot)
+            if (ProgressBar.readyToShot && Guns.hitDistance >= hit.distance)
             {
-                //Debug.Log(hit.distance);
+                Debug.Log(hit.distance + " Guns.hitDistance: " + Guns.hitDistance);
 
                 GameObject.Find("GameManager").GetComponent<GameManager>().pushFireBtn.SetActive(true);
                 Destroy(hit.transform.gameObject);
@@ -40,20 +42,22 @@ public class RayShooter : MonoBehaviour
                 GameManager.countDestroyPlate++;
                 Instantiate(dirtParticle, hit.point, Quaternion.identity);
                 dirtParticle.Play();
-            }                 
+                
+            } else if (ProgressBar.readyToShot && Guns.hitDistance < hit.distance)
+            {
+                textDistance.gameObject.SetActive(true);
+                Debug.Log(hit.distance + " Guns.hitDistance: " + Guns.hitDistance);
+            }
+
         }
         else
         {
             ProgressBar.currentAmount = 0;
+            textDistance.gameObject.SetActive(false);
         }
     }
 
-    //Задержка удаления после выстрела пока долетит снаряд
 
 
-    public void WaitSec()
-    {
-        Debug.Log("wait");
-    }
     
 }

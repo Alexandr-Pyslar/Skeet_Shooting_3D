@@ -14,16 +14,18 @@ public class MenuController : MonoBehaviour
 
     void Start()
     {
-        camVol = GameObject.Find("Main Camera").GetComponent<AudioSource>().volume;
+      //  camVol = GameObject.Find("Main Camera").GetComponent<AudioSource>().volume;
     }
 
     void Update()
     {
+        /*
         if (fadingVol && camVol >= 0)
         {
             camVol *= 0.8f;
             GameObject.Find("Main Camera").GetComponent<AudioSource>().volume = camVol;
         }
+        */
     }
     public void ShowExitBtns()
     {
@@ -62,8 +64,19 @@ public class MenuController : MonoBehaviour
 
     private void LoadGame()
     {
-        SceneManager.LoadScene("SampleScene");
+
+        if (PlayerPrefs.HasKey("currenteLevel"))
+        {
+            SceneManager.LoadScene("Level "+ PlayerPrefs.GetInt("currenteLevel"));
+
+        } else if (!PlayerPrefs.HasKey("currenteLevel") || PlayerPrefs.GetInt("currenteLevel") > 3)
+        SceneManager.LoadScene("Level 1");
+
     }
 
+    public void RestartGame()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 
 }

@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     private Vector3 lastPosition;
     public float speed = 5f;
-    private float limitX = 50f;
+    private float limitX = 70f;
     private float limitY = 50f;
 
     private Quaternion originQuaternion;
@@ -58,17 +58,18 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //Если точка клика равна начальной позиции камеры, то ничего не делать. Иначе
-
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //Debug.DrawRay(ray.origin, ray.direction * 5000);
         }
 
         if (Input.GetMouseButton(0))
         {
+
             dirX += Input.GetAxis("Mouse X") * speed;
             dirY += Input.GetAxis("Mouse Y") * speed;
 
-
             dirY = Mathf.Clamp(dirY, -limitY, limitY);
+            dirX = Mathf.Clamp(dirX, -limitX, limitX);
 
             Quaternion rotationY = Quaternion.AngleAxis(dirX, Vector3.up);
             Quaternion rotationX = Quaternion.AngleAxis(-dirY, Vector3.right);
@@ -76,4 +77,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-}
+    }
+
+
+
+
+

@@ -6,16 +6,33 @@ public class MovePlate : MonoBehaviour
 {
     private Rigidbody rbPlate;
     private Vector3 movement;
-    public float speed = 3f;
+    private float speed = 0.05f;
+    private float tempLevelMultiply;
     //public ParticleSystem dirtParticle;
+    private float randomRange;
 
     void Start()
     {
+        randomRange = Random.Range(3f, 6f);
         rbPlate = GetComponent<Rigidbody>();
-        movement = new Vector3(3, 5, 10);
-        rbPlate.AddForce(movement * speed, ForceMode.Impulse);
+        movement = new Vector3(randomRange, randomRange, 10);
+        if (PlayerPrefs.GetInt("currenteLevel") == 0)
+        {
+            tempLevelMultiply = PlayerPrefs.GetInt("currenteLevel") + 1;
+        }
+        else
+        {
+            tempLevelMultiply = PlayerPrefs.GetInt("currenteLevel");
+        }
+        rbPlate.AddForce(movement * (speed + (tempLevelMultiply / 20)), ForceMode.Impulse);
+        Debug.Log(speed + (tempLevelMultiply / 20));
+        Invoke("DestroyPlate", 8);
 
-        Invoke("DestroyPlate", 5);
+    }
+
+    private void Update()
+    {
+        
     }
 
 
