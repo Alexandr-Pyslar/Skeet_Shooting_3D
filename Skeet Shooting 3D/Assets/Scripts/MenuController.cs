@@ -14,18 +14,18 @@ public class MenuController : MonoBehaviour
 
     void Start()
     {
-      //  camVol = GameObject.Find("Main Camera").GetComponent<AudioSource>().volume;
+        camVol = GameObject.Find("Main Camera").GetComponent<AudioSource>().volume;
     }
 
     void Update()
     {
-        /*
+        
         if (fadingVol && camVol >= 0)
         {
             camVol *= 0.8f;
             GameObject.Find("Main Camera").GetComponent<AudioSource>().volume = camVol;
         }
-        */
+        
     }
     public void ShowExitBtns()
     {

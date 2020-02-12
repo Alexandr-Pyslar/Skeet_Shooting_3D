@@ -8,7 +8,6 @@ public class MovePlate : MonoBehaviour
     private Vector3 movement;
     private float speed = 0.05f;
     private float tempLevelMultiply;
-    //public ParticleSystem dirtParticle;
     private float randomRange;
 
     void Start()

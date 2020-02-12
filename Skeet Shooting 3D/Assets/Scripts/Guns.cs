@@ -17,12 +17,18 @@ public class Guns : MonoBehaviour
     public static int hitDistance = 20;
     public static Vector3 sizeColliderPlate;
 
+    public AudioSource audioPlayer;
+    public AudioClip[] audoiShoot;
+
+    private int gunSelect = 0;
+
 
 
     void Start()
     {
-       sizeColliderPlate = new Vector3(1, 2 ,1);
-}
+        audioPlayer = GetComponent<AudioSource>();
+        sizeColliderPlate = new Vector3(1, 2 ,1);
+    }
 
 
     void Update()
@@ -42,6 +48,23 @@ public class Guns : MonoBehaviour
         {
             btn2.interactable = true;
         }
+         if (ProgressBar.readyToShot)
+        {
+            switch(gunSelect)
+            {
+                case 0:
+                    audioPlayer.PlayOneShot(audoiShoot[0], 1f);
+                    break;
+                case 1:
+                    audioPlayer.PlayOneShot(audoiShoot[1], 1f);
+                    break;
+                case 2:
+                    audioPlayer.PlayOneShot(audoiShoot[2], 1f);
+                    break;
+            }
+        }
+
+
     }
 
     public void ShowGun0()
@@ -51,8 +74,10 @@ public class Guns : MonoBehaviour
         gun2.SetActive(false);
 
         //weapon characteristics
-        hitDistance = 20;
+        hitDistance = 13;
         sizeColliderPlate = new Vector3(1.2f, 6, 1.2f);
+
+        gunSelect = 0;
     }
 
     public void ShowGun1()
@@ -64,6 +89,7 @@ public class Guns : MonoBehaviour
         //weapon characteristics
         hitDistance = 40;
         sizeColliderPlate = new Vector3(2.5f, 8f, 2.5f);
+        gunSelect = 1;
     }
 
     public void ShowGun2()
@@ -75,6 +101,7 @@ public class Guns : MonoBehaviour
         //weapon characteristics
         hitDistance = 100;
         sizeColliderPlate = new Vector3(1.2f, 6, 1.2f);
+        gunSelect = 2;
     }
 
 }

@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
 
-        //RotateCamPC();
-        RotateCamAndroid();
+        RotateCamPC();
+        //RotateCamAndroid();
     }
 
     private void RotateCamPC()

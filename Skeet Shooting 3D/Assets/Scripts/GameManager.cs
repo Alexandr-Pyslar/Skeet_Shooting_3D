@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject platePrefab;
+    public GameObject[] platePrefabs;
     public GameObject canvasNextLevel;
     public GameObject player;
     public GameObject nextLevelBtn;
@@ -20,13 +20,13 @@ public class GameManager : MonoBehaviour
     public Text scoreTextNextLevel;
     public Text levelTextNextLevel;
     public Text moneyText;
+    public Text moneyTextMenu;
 
     public static int money;
     public static int score = 0;
-    //public static int coin;
     public static int level = 1;
     public static bool isTimeDestroy = false;
-    private  int plateAvailible;
+    private int plateAvailible;
 
     private int count = 3;
     public static int countDestroyPlate = 0;
@@ -39,12 +39,12 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("currenteMoney"))
         {
             money = PlayerPrefs.GetInt("currenteMoney");
-            Debug.Log(money);
+            //Debug.Log(money);
         }
         if (PlayerPrefs.HasKey("currenteLevel"))
         {
             level = PlayerPrefs.GetInt("currenteLevel");
-            Debug.Log(level);
+            //Debug.Log(level);
         }
     }
 
@@ -52,15 +52,19 @@ public class GameManager : MonoBehaviour
     {
         UpdateScoreLevelPlate();
         moneyText.text = "Money: " + money;
-    }
+        Debug.Log("Level: " + level + " Score: " + score + " plateAvailible: " + plateAvailible + " countDestroyPlate: " + 
+            countDestroyPlate + " money: " + money + " currenteMoney: " + PlayerPrefs.GetInt("currenteMoney"));
+    } 
 
     public void SpawnPlate()
     {
         randomRange = Random.Range(3f, 6f);
-        platePrefab.GetComponent<BoxCollider>().size = Guns.sizeColliderPlate;
-        Instantiate(platePrefab, new Vector3(-randomRange, randomRange, 0), Quaternion.identity);      
+        int prefabIndex = Random.Range(0, platePrefabs.Length);
+        platePrefabs[prefabIndex].GetComponent<BoxCollider>().size = Guns.sizeColliderPlate;
+        Instantiate(platePrefabs[prefabIndex], new Vector3(-randomRange, randomRange, 0), Quaternion.identity);      
         plateAvailible--;
         pushFireBtn.SetActive(false);
+        Debug.Log(prefabIndex);
     }
 
     public void UpdateScoreLevelPlate()
@@ -68,6 +72,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score + "/" + count;
         levelText.text = "Level: " + level;
         plateText.text = "Plates: " + plateAvailible + "/" + count;
+        
 
         scoreTextNextLevel.text = "Score: " + score + "/" + count;
         levelTextNextLevel.text = "Level: " + level;
@@ -108,6 +113,7 @@ public class GameManager : MonoBehaviour
             level = 1;
             PlayerPrefs.SetInt("currenteLevel", level);
             SceneManager.LoadScene("Game Over Level");
+
         } else
         SceneManager.LoadScene("Level " + level);
     }
@@ -129,28 +135,34 @@ public class GameManager : MonoBehaviour
     {
         //добавить 
         //SceneManager.LoadScene(sceneBuildIndex + 1);
+
         canvasNextLevel.SetActive(true);
         player.GetComponent<PlayerController>().enabled = false;
         nextLevelBtn.SetActive(true);
         pushFireBtn.SetActive(false);
+        moneyTextMenu.text = "Money: " + score * level + " x " + level;
     }
 
     public void WaitCanvasRestartLevel()
     {
+
         canvasNextLevel.SetActive(true);
         player.GetComponent<PlayerController>().enabled = false;
         restartLevelBtn.SetActive(true);
         pushFireBtn.SetActive(false);
+        moneyTextMenu.text = "Money: +" + score * level + " x" + level;
     }
 
     public void CountMoney()
     {
-        money += score;
+        money += score * level;
         PlayerPrefs.SetInt("currenteMoney", money);
     }
 
     public void BackToMenu()
     {
+        score = 0;
+        countDestroyPlate = 0;
         SceneManager.LoadScene("MenuScene");
     }
 }
