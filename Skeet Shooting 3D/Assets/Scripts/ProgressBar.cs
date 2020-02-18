@@ -10,17 +10,6 @@ public class ProgressBar : MonoBehaviour
     public static bool readyToShot = false;
     private float speedRadial = 5f;
 
-    void Start()
-    {
-        
-    }
-
-
-    void Update()
-    {
-
-    }
-
     void FixedUpdate()
     {
         if (currentAmount < 100 && RayShooter.inAim)

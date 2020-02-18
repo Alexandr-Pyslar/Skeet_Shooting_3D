@@ -76,6 +76,10 @@ public class MenuController : MonoBehaviour
 
     public void RestartGame()
     {
+        GameManager.money = 0;
+        GameManager.level = 1;
+        MenuShop.isGun1Purchased = 0;
+        MenuShop.isGun2Purchased = 0;
         PlayerPrefs.DeleteAll();
     }
 

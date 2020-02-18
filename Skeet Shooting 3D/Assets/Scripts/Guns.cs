@@ -14,7 +14,7 @@ public class Guns : MonoBehaviour
     public Button btn1;
     public Button btn2;
 
-    public static int hitDistance = 20;
+    public static int hitDistance = 22;
     public static Vector3 sizeColliderPlate;
 
     public AudioSource audioPlayer;
@@ -27,12 +27,13 @@ public class Guns : MonoBehaviour
     void Start()
     {
         audioPlayer = GetComponent<AudioSource>();
-        sizeColliderPlate = new Vector3(1, 2 ,1);
+        sizeColliderPlate = new Vector3(1.2f, 7, 1.2f);
     }
 
 
     void Update()
     {
+
         if (PlayerPrefs.GetInt("isGun1Purchased") != 1)
         {
             btn1.interactable = false;
@@ -48,23 +49,24 @@ public class Guns : MonoBehaviour
         {
             btn2.interactable = true;
         }
-         if (ProgressBar.readyToShot)
+         if (ProgressBar.readyToShot && GameManager.playShoot)
         {
             switch(gunSelect)
             {
                 case 0:
                     audioPlayer.PlayOneShot(audoiShoot[0], 1f);
+                    GameManager.playShoot = false;
                     break;
                 case 1:
                     audioPlayer.PlayOneShot(audoiShoot[1], 1f);
+                    GameManager.playShoot = false;
                     break;
                 case 2:
                     audioPlayer.PlayOneShot(audoiShoot[2], 1f);
+                    GameManager.playShoot = false;
                     break;
             }
         }
-
-
     }
 
     public void ShowGun0()
@@ -74,8 +76,8 @@ public class Guns : MonoBehaviour
         gun2.SetActive(false);
 
         //weapon characteristics
-        hitDistance = 13;
-        sizeColliderPlate = new Vector3(1.2f, 6, 1.2f);
+        hitDistance = 22;
+        sizeColliderPlate = new Vector3(1.2f, 7, 1.2f);
 
         gunSelect = 0;
     }
@@ -88,7 +90,7 @@ public class Guns : MonoBehaviour
 
         //weapon characteristics
         hitDistance = 40;
-        sizeColliderPlate = new Vector3(2.5f, 8f, 2.5f);
+        sizeColliderPlate = new Vector3(2.5f, 10f, 2.5f);
         gunSelect = 1;
     }
 
@@ -100,7 +102,7 @@ public class Guns : MonoBehaviour
 
         //weapon characteristics
         hitDistance = 100;
-        sizeColliderPlate = new Vector3(1.2f, 6, 1.2f);
+        sizeColliderPlate = new Vector3(1.5f, 8, 1.5f);
         gunSelect = 2;
     }
 

@@ -13,8 +13,8 @@ public class MenuShop : MonoBehaviour
     private int gun1Price = 5;
     private int gun2Price = 10;
 
-    private int isGun1Purchased;
-    private int isGun2Purchased;
+    public static int isGun1Purchased = 0;
+    public static int isGun2Purchased = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -37,8 +37,8 @@ public class MenuShop : MonoBehaviour
         if (money < gun2Price) gun2BtnPrice.interactable = false;
             else gun2BtnPrice.interactable = true;
 
-        if (isGun1Purchased == 1) gun1BtnPrice.gameObject.SetActive(false);
-        if (isGun2Purchased == 1) gun2BtnPrice.gameObject.SetActive(false);
+        if (PlayerPrefs.GetInt("isGun1Purchased") == 1 || isGun1Purchased != 0) gun1BtnPrice.gameObject.SetActive(false);
+        if (PlayerPrefs.GetInt("isGun2Purchased") == 1 || isGun2Purchased != 0) gun2BtnPrice.gameObject.SetActive(false);
     }
 
     public void Gun1Purchase()

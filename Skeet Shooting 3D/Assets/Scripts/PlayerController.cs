@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
 
     public Transform player;
-    public float speed = 5f;
+    public float speed = 2f;
 
     void Start()
     {
@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
 
-        RotateCamPC();
-        //RotateCamAndroid();
+        //RotateCamPC();
+        RotateCamAndroid();
     }
 
     private void RotateCamPC()

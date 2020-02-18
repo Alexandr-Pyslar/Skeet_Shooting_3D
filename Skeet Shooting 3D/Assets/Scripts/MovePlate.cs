@@ -8,13 +8,16 @@ public class MovePlate : MonoBehaviour
     private Vector3 movement;
     private float speed = 0.05f;
     private float tempLevelMultiply;
-    private float randomRange;
+    private int randomRange;
+    public GameObject targetPoint;
+
 
     void Start()
     {
-        randomRange = Random.Range(3f, 6f);
         rbPlate = GetComponent<Rigidbody>();
-        movement = new Vector3(randomRange, randomRange, 10);
+
+        GetRandomPositionTarget();
+
         if (PlayerPrefs.GetInt("currenteLevel") == 0)
         {
             tempLevelMultiply = PlayerPrefs.GetInt("currenteLevel") + 1;
@@ -24,16 +27,10 @@ public class MovePlate : MonoBehaviour
             tempLevelMultiply = PlayerPrefs.GetInt("currenteLevel");
         }
         rbPlate.AddForce(movement * (speed + (tempLevelMultiply / 20)), ForceMode.Impulse);
-        Debug.Log(speed + (tempLevelMultiply / 20));
+        //Debug.Log(speed + (tempLevelMultiply / 20));
         Invoke("DestroyPlate", 8);
 
     }
-
-    private void Update()
-    {
-        
-    }
-
 
     public void DestroyPlate()
     {
@@ -43,5 +40,11 @@ public class MovePlate : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void GetRandomPositionTarget()
+    {
+        randomRange = Random.Range(-2, 3);
+        Vector3 tarPointPos = targetPoint.transform.position;
+        movement = new Vector3(tarPointPos.x + randomRange, tarPointPos.y + randomRange, tarPointPos.z + randomRange);
+    }
 
 }

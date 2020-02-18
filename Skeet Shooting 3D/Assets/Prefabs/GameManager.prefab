@@ -60,6 +60,7 @@ MonoBehaviour:
   levelTextNextLevel: {fileID: 0}
   moneyText: {fileID: 0}
   moneyTextMenu: {fileID: 0}
+  spawnPoint: {fileID: 0}
 --- !u!114 &2019004700
 MonoBehaviour:
   m_ObjectHideFlags: 0

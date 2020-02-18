@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public GameObject pushFireBtn;
 
 
+
+
     public Text scoreText;
     public Text plateText;
     public Text levelText;
@@ -28,32 +30,37 @@ public class GameManager : MonoBehaviour
     public static bool isTimeDestroy = false;
     private int plateAvailible;
 
-    private int count = 3;
+    private int count = 5;
     public static int countDestroyPlate = 0;
 
     private float randomRange;
+    private int randomXPos = 1;
+
+    public GameObject spawnPoint;
+
+    public static bool playShoot = false;
 
     void Start()
     {
+        Debug.Log(spawnPoint.transform.position);
         plateAvailible = count;
         if (PlayerPrefs.HasKey("currenteMoney"))
         {
             money = PlayerPrefs.GetInt("currenteMoney");
-            //Debug.Log(money);
         }
         if (PlayerPrefs.HasKey("currenteLevel"))
         {
             level = PlayerPrefs.GetInt("currenteLevel");
-            //Debug.Log(level);
         }
     }
 
     void Update()
     {
+
         UpdateScoreLevelPlate();
         moneyText.text = "Money: " + money;
-        Debug.Log("Level: " + level + " Score: " + score + " plateAvailible: " + plateAvailible + " countDestroyPlate: " + 
-            countDestroyPlate + " money: " + money + " currenteMoney: " + PlayerPrefs.GetInt("currenteMoney"));
+        //Debug.Log("Level: " + level + " Score: " + score + " plateAvailible: " + plateAvailible + " countDestroyPlate: " + 
+         //   countDestroyPlate + " money: " + money + " currenteMoney: " + PlayerPrefs.GetInt("currenteMoney"));
     } 
 
     public void SpawnPlate()
@@ -61,10 +68,14 @@ public class GameManager : MonoBehaviour
         randomRange = Random.Range(3f, 6f);
         int prefabIndex = Random.Range(0, platePrefabs.Length);
         platePrefabs[prefabIndex].GetComponent<BoxCollider>().size = Guns.sizeColliderPlate;
-        Instantiate(platePrefabs[prefabIndex], new Vector3(-randomRange, randomRange, 0), Quaternion.identity);      
+
+        RandomPosX();
+        spawnPoint.transform.position = new Vector3( spawnPoint.transform.position.x * randomXPos, spawnPoint.transform.position.y, spawnPoint.transform.position.z);
+        Debug.Log(spawnPoint.transform.position);
+        Instantiate(platePrefabs[prefabIndex], spawnPoint.transform.position, Quaternion.identity);
         plateAvailible--;
         pushFireBtn.SetActive(false);
-        Debug.Log(prefabIndex);
+
     }
 
     public void UpdateScoreLevelPlate()
@@ -164,5 +175,18 @@ public class GameManager : MonoBehaviour
         score = 0;
         countDestroyPlate = 0;
         SceneManager.LoadScene("MenuScene");
+    }
+
+    void RandomPosX()
+    {
+        float pushPosX = Random.Range(0.0f, 1.0f);
+        if (pushPosX < 0.5f)
+        {
+            randomXPos = -1;
+        }
+        else
+        {
+            randomXPos = 1;
+        }
     }
 }
