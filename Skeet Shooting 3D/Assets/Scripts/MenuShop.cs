@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MenuShop : MonoBehaviour
@@ -16,7 +14,6 @@ public class MenuShop : MonoBehaviour
     public static int isGun1Purchased = 0;
     public static int isGun2Purchased = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -25,12 +22,11 @@ public class MenuShop : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         money = PlayerPrefs.GetInt("currenteMoney");
         textMoney.text = "Money: " + money;
-        // add foreach
+
         if (money < gun1Price) gun1BtnPrice.interactable = false;
             else gun1BtnPrice.interactable = true;
 

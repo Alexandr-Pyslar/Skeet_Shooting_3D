@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -12,9 +10,6 @@ public class GameManager : MonoBehaviour
     public GameObject nextLevelBtn;
     public GameObject restartLevelBtn;
     public GameObject pushFireBtn;
-
-
-
 
     public Text scoreText;
     public Text plateText;
@@ -42,7 +37,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(spawnPoint.transform.position);
         plateAvailible = count;
         if (PlayerPrefs.HasKey("currenteMoney"))
         {
@@ -56,11 +50,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
         UpdateScoreLevelPlate();
         moneyText.text = "Money: " + money;
-        //Debug.Log("Level: " + level + " Score: " + score + " plateAvailible: " + plateAvailible + " countDestroyPlate: " + 
-         //   countDestroyPlate + " money: " + money + " currenteMoney: " + PlayerPrefs.GetInt("currenteMoney"));
     } 
 
     public void SpawnPlate()
@@ -71,7 +62,6 @@ public class GameManager : MonoBehaviour
 
         RandomPosX();
         spawnPoint.transform.position = new Vector3( spawnPoint.transform.position.x * randomXPos, spawnPoint.transform.position.y, spawnPoint.transform.position.z);
-        Debug.Log(spawnPoint.transform.position);
         Instantiate(platePrefabs[prefabIndex], spawnPoint.transform.position, Quaternion.identity);
         plateAvailible--;
         pushFireBtn.SetActive(false);
@@ -93,12 +83,13 @@ public class GameManager : MonoBehaviour
             if (!isTimeDestroy)
             {
                 // Next Level
-                Invoke("WaitCanvasNextLevel", 1);
+                pushFireBtn.SetActive(false);
+                Invoke("WaitCanvasNextLevel", .5f);
             }
             if (isTimeDestroy)
             {
                 //Restart level
-                //Invoke("WaitCanvasRestartLevel", 1);
+                pushFireBtn.SetActive(false);
                 WaitCanvasRestartLevel();
             }
         }
@@ -144,9 +135,6 @@ public class GameManager : MonoBehaviour
 
     public void WaitCanvasNextLevel()
     {
-        //добавить 
-        //SceneManager.LoadScene(sceneBuildIndex + 1);
-
         canvasNextLevel.SetActive(true);
         player.GetComponent<PlayerController>().enabled = false;
         nextLevelBtn.SetActive(true);

@@ -8,8 +8,6 @@ public class PlayerController : MonoBehaviour
     private Quaternion originQuaternion;
     float dirX;
     float dirY;
-    // public float sense = 0.5f;
-
 
     public Transform player;
     public float speed = 2f;

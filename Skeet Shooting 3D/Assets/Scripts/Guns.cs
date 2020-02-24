@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -49,6 +47,7 @@ public class Guns : MonoBehaviour
         {
             btn2.interactable = true;
         }
+
          if (ProgressBar.readyToShot && GameManager.playShoot)
         {
             switch(gunSelect)
@@ -78,7 +77,6 @@ public class Guns : MonoBehaviour
         //weapon characteristics
         hitDistance = 22;
         sizeColliderPlate = new Vector3(1.2f, 7, 1.2f);
-
         gunSelect = 0;
     }
 

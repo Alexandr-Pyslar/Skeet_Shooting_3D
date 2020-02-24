@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -13,17 +11,12 @@ public class RayShooter : MonoBehaviour
     public GameObject platePrefab;
     public ParticleSystem dirtParticle;
     public Text textDistance;
-    
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main;
-        
+        cam = Camera.main;     
     }
 
-    // Update is called once per frame
     void Update()
     {
         inAim = false;
@@ -37,7 +30,6 @@ public class RayShooter : MonoBehaviour
             inAim = true;
             if (ProgressBar.readyToShot && Guns.hitDistance >= hit.distance)
             {
-                //Debug.Log(hit.distance + " Guns.hitDistance: " + Guns.hitDistance);
 
                 GameObject.Find("GameManager").GetComponent<GameManager>().pushFireBtn.SetActive(true);
                 Destroy(hit.transform.gameObject);
