@@ -703,16 +703,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2586463349473815295, guid: a4037a4cb4860fe429ed29a8073681fd,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 2586463349473815295, guid: a4037a4cb4860fe429ed29a8073681fd,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.52
-      objectReference: {fileID: 0}
     - target: {fileID: 2953095942420397568, guid: a4037a4cb4860fe429ed29a8073681fd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -773,31 +763,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Point Screen
       objectReference: {fileID: 0}
-    - target: {fileID: 2953095944363575313, guid: a4037a4cb4860fe429ed29a8073681fd,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 2953095944363575313, guid: a4037a4cb4860fe429ed29a8073681fd,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.18
-      objectReference: {fileID: 0}
     - target: {fileID: 2953095944363575342, guid: a4037a4cb4860fe429ed29a8073681fd,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 534669904}
-    - target: {fileID: 3033066636656262895, guid: a4037a4cb4860fe429ed29a8073681fd,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 73715982b489aae4390e53f8ed56863e, type: 2}
-    - target: {fileID: 3033066637152911193, guid: a4037a4cb4860fe429ed29a8073681fd,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 73715982b489aae4390e53f8ed56863e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4037a4cb4860fe429ed29a8073681fd, type: 3}
 --- !u!1001 &3198552452030858986
@@ -871,11 +841,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3198552452087485539, guid: 306c81a504bce4c4599c8e8cb983058d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3198552452098442843, guid: 306c81a504bce4c4599c8e8cb983058d,
         type: 3}

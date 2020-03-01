@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
         //RotateCamPC();
         RotateCamAndroid();
+
+
     }
 
     private void RotateCamPC()

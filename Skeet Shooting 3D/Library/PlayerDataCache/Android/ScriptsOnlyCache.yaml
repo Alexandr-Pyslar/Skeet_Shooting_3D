@@ -46,6 +46,8 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
+    com.unity.multiplayer-hlapi.Runtime.dll:
+    - UnityEngine.Networking.NetworkCallbacks
   sceneClasses:
     Assets/Scenes/Game Over Level.unity:
     - Class: 1
@@ -493,7 +495,7 @@ ScriptsOnlyBuild:
     className: PlayerController
   - hash:
       serializedVersion: 2
-      Hash: 2b05fedbde0421cb38e559bd01c7361e
+      Hash: 8ea5b032c402515d578f31e1809362a9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RayShooter
@@ -595,7 +597,7 @@ ScriptsOnlyBuild:
     className: NetworkTransform
   - hash:
       serializedVersion: 2
-      Hash: 0f23f725af4a5c652fe7f6d1d610c33a
+      Hash: 1263319ec773ff9e099893da4a3b1aa5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuShop
@@ -1086,4 +1088,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Level 2.unity
   - Assets/Scenes/Level 3.unity
   - Assets/Scenes/Game Over Level.unity
-  playerPath: C:/Users/alexa/Desktop/SkeetShooting_3D_0.6.apk
+  playerPath: C:/Users/alexa/Desktop/SkeetShooting_3D_2.apk

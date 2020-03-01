@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     {
         UpdateScoreLevelPlate();
         moneyText.text = "Money: " + money;
+        Debug.Log("speedRad: " + ProgressBar.speedRadial + " / distance: " + Guns.hitDistance + " / Spread: " + RayShooter.randomRot);
+
     } 
 
     public void SpawnPlate()
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
 
         } else
         SceneManager.LoadScene("Level " + level);
+        Guns.hitDistance = 22;
     }
 
     public void RestartLevel()

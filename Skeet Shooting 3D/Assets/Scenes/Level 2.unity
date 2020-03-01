@@ -719,7 +719,7 @@ PrefabInstance:
     - target: {fileID: 1118376964959814051, guid: f68526d86b4183d4e8688fc2185159d4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.3999996
+      value: 8.01
       objectReference: {fileID: 0}
     - target: {fileID: 1118376964959814051, guid: f68526d86b4183d4e8688fc2185159d4,
         type: 3}
@@ -903,6 +903,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Point Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 2953095942420397569, guid: a4037a4cb4860fe429ed29a8073681fd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Target
       objectReference: {fileID: 0}
     - target: {fileID: 2953095944363575342, guid: a4037a4cb4860fe429ed29a8073681fd,
         type: 3}

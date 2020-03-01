@@ -81,6 +81,7 @@ public class MenuController : MonoBehaviour
         MenuShop.isGun1Purchased = 0;
         MenuShop.isGun2Purchased = 0;
         PlayerPrefs.DeleteAll();
+        RayShooter.randomRot = 2;
     }
 
 }

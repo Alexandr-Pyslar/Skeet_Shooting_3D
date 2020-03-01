@@ -8,7 +8,7 @@ public class ProgressBar : MonoBehaviour
     public Transform loadingBar;
     public static float currentAmount;
     public static bool readyToShot = false;
-    private float speedRadial = 5f;
+    public static float speedRadial = 5f;
 
     void FixedUpdate()
     {
