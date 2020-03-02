@@ -38,13 +38,13 @@ public class MenuShop : MonoBehaviour
         gun1Distance.text = "Distance: 40 + " + PlayerPrefs.GetInt("addGun1Distance");
         gun2Distance.text = "Distance: 100 + " + PlayerPrefs.GetInt("addGun2Distance");
 
-        gun0Spread.text = "Spread: 2 - " + PlayerPrefs.GetFloat("addGun0Spread");
-        gun1Spread.text = "Spread: 2 - " + PlayerPrefs.GetFloat("addGun1Spread");
-        gun2Spread.text = "Spread: 2 - " + PlayerPrefs.GetFloat("addGun2Spread");
+        gun0Spread.text = "Spread: 20 - " + PlayerPrefs.GetFloat("addGun0Spread");
+        gun1Spread.text = "Spread: 20 - " + PlayerPrefs.GetFloat("addGun1Spread");
+        gun2Spread.text = "Spread: 20 - " + PlayerPrefs.GetFloat("addGun2Spread");
 
         if (PlayerPrefs.HasKey("addGun0Spread"))
         {
-            RayShooter.randomRot = 2 - PlayerPrefs.GetFloat("addGun0Spread");
+            RayShooter.randomRot = 20 - PlayerPrefs.GetFloat("addGun0Spread");
         }
     }
 
@@ -61,6 +61,28 @@ public class MenuShop : MonoBehaviour
 
         if (PlayerPrefs.GetInt("isGun1Purchased") == 1 || isGun1Purchased != 0) gun1BtnPrice.gameObject.SetActive(false);
         if (PlayerPrefs.GetInt("isGun2Purchased") == 1 || isGun2Purchased != 0) gun2BtnPrice.gameObject.SetActive(false);
+
+        if (money == 0)
+        {
+            gun0DistanceBtn.interactable = false;
+            gun1DistanceBtn.interactable = false;
+            gun2DistanceBtn.interactable = false;
+            gun0SpreadBtn.interactable = false;
+            gun1SpreadBtn.interactable = false;
+            gun2SpreadBtn.interactable = false;
+        } else
+        {
+            gun0DistanceBtn.interactable = true;
+            gun1DistanceBtn.interactable = true;
+            gun2DistanceBtn.interactable = true;
+
+            if (20 - PlayerPrefs.GetFloat("addGun0Spread") <= 0) gun0SpreadBtn.interactable = false;
+                else gun0SpreadBtn.interactable = true;
+            if (20 - PlayerPrefs.GetFloat("addGun1Spread") <= 0) gun1SpreadBtn.interactable = false;
+                else gun1SpreadBtn.interactable = true;
+            if (20 - PlayerPrefs.GetFloat("addGun2Spread") <= 0) gun2SpreadBtn.interactable = false;
+                else gun2SpreadBtn.interactable = true;
+        }
     }
 
     public void Gun1Purchase()
@@ -79,6 +101,7 @@ public class MenuShop : MonoBehaviour
         PlayerPrefs.SetInt("isGun2Purchased", isGun2Purchased);
     }
 
+
     public void AddDistanceGun0()
     {
         if (money > 0)
@@ -93,9 +116,6 @@ public class MenuShop : MonoBehaviour
             money--;
             PlayerPrefs.SetInt("currenteMoney", money);
             gun0Distance.text = "Distance: 25 + " + addGun0Distance;
-        } else
-        {
-            gun0DistanceBtn.interactable = false;
         }
     }
 
@@ -114,10 +134,7 @@ public class MenuShop : MonoBehaviour
             PlayerPrefs.SetInt("currenteMoney", money);
             gun1Distance.text = "Distance: 40 + " + addGun1Distance;
         }
-        else
-        {
-            gun1DistanceBtn.interactable = false;
-        }
+        
     }
 
     public void AddDistanceGun2()
@@ -135,10 +152,7 @@ public class MenuShop : MonoBehaviour
             PlayerPrefs.SetInt("currenteMoney", money);
             gun2Distance.text = "Distance: 100 + " + addGun2Distance;
         }
-        else
-        {
-            gun2DistanceBtn.interactable = false;
-        }
+
     }
 
     public void AddSpreadGun0()
@@ -150,16 +164,22 @@ public class MenuShop : MonoBehaviour
             {
                 addGun0Spread = PlayerPrefs.GetFloat("addGun0Spread");
             }
-            addGun0Spread += 0.1f;
+            addGun0Spread += 1f;
+
             PlayerPrefs.SetFloat("addGun0Spread", addGun0Spread);
             money--;
             PlayerPrefs.SetInt("currenteMoney", money);
-            gun0Spread.text = "Spread: 2 - " + PlayerPrefs.GetFloat("addGun0Spread");
+
+            if (PlayerPrefs.HasKey("addGun0Spread"))
+            {
+                gun0Spread.text = "Spread: 20 - " + PlayerPrefs.GetFloat("addGun0Spread");
+            }
+            else
+            {
+                gun0Spread.text = "Spread: 20 - " + addGun0Spread;
+            }
         }
-        else
-        {
-            gun0SpreadBtn.interactable = false;
-        }
+
     }
 
     public void AddSpreadGun1()
@@ -171,15 +191,11 @@ public class MenuShop : MonoBehaviour
             {
                 addGun1Spread = PlayerPrefs.GetFloat("addGun1Spread");
             }
-            addGun1Spread += 0.1f;
+            addGun1Spread += 1f;
             PlayerPrefs.SetFloat("addGun1Spread", addGun1Spread);
             money--;
             PlayerPrefs.SetInt("currenteMoney", money);
-            gun1Spread.text = "Spread: 2 - " + PlayerPrefs.GetFloat("addGun1Spread");
-        }
-        else
-        {
-            gun1SpreadBtn.interactable = false;
+            gun1Spread.text = "Spread: 20 - " + PlayerPrefs.GetFloat("addGun1Spread");
         }
     }
 
@@ -192,16 +208,13 @@ public class MenuShop : MonoBehaviour
             {
                 addGun2Spread = PlayerPrefs.GetFloat("addGun2Spread");
             }
-            addGun2Spread += 0.1f;
+            addGun2Spread += 1f;
             PlayerPrefs.SetFloat("addGun2Spread", addGun2Spread);
             money--;
             PlayerPrefs.SetInt("currenteMoney", money);
-            gun2Spread.text = "Spread: 2 - " + PlayerPrefs.GetFloat("addGun2Spread");
+            gun2Spread.text = "Spread: 20 - " + PlayerPrefs.GetFloat("addGun2Spread");
         }
-        else
-        {
-            gun2SpreadBtn.interactable = false;
-        }
+
     }
 
 

@@ -78,10 +78,11 @@ public class MenuController : MonoBehaviour
     {
         GameManager.money = 0;
         GameManager.level = 1;
+        RayShooter.randomRot = 20;
         MenuShop.isGun1Purchased = 0;
         MenuShop.isGun2Purchased = 0;
         PlayerPrefs.DeleteAll();
-        RayShooter.randomRot = 2;
+        SceneManager.LoadScene("MenuScene");
     }
 
 }

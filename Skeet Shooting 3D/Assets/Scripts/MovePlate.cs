@@ -25,7 +25,6 @@ public class MovePlate : MonoBehaviour
             tempLevelMultiply = PlayerPrefs.GetInt("currenteLevel");
         }
         rbPlate.AddForce(movement * (speed + (tempLevelMultiply / 20)), ForceMode.Impulse);
-        //Debug.Log(speed + (tempLevelMultiply / 20));
         Invoke("DestroyPlate", 8);
 
     }

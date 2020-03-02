@@ -12,7 +12,7 @@ public class RayShooter : MonoBehaviour
     public ParticleSystem dirtParticle;
     public Text textDistance;
 
-    public static float randomRot = 2;
+    public static float randomRot = 20f;
     private RaycastHit hit2;
     public Transform firePoint;
     private Transform firePointStartTr;
@@ -27,7 +27,6 @@ public class RayShooter : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(randomRot + " / " + PlayerPrefs.GetFloat("addGun0Spread"));
         inAim = false;
         Vector3 point = new Vector3(cam.pixelWidth / 2, cam.pixelHeight / 2, 0);
         Ray ray = cam.ScreenPointToRay(point);
@@ -79,9 +78,9 @@ public class RayShooter : MonoBehaviour
     {
             firePoint.localRotation = Quaternion.identity;
             firePoint.localRotation = Quaternion.Euler(
-                firePointStartTr.localRotation.x + Random.Range(-randomRot, randomRot), 
-                firePointStartTr.localRotation.y + Random.Range(-randomRot, randomRot),
-                firePointStartTr.localRotation.z + Random.Range(-randomRot, randomRot));
+                firePointStartTr.localRotation.x + Random.Range(-randomRot / 10f, randomRot / 10f), 
+                firePointStartTr.localRotation.y + Random.Range(-randomRot / 10f, randomRot / 10f),
+                firePointStartTr.localRotation.z + Random.Range(-randomRot / 10f, randomRot / 10f));
             Vector3 fwd = firePoint.TransformDirection(Vector3.forward);
 
         GameManager.playShoot = true;

@@ -46,6 +46,17 @@ public class GameManager : MonoBehaviour
         {
             level = PlayerPrefs.GetInt("currenteLevel");
         }
+
+        if (PlayerPrefs.HasKey("addGun0Spread"))
+        {
+            RayShooter.randomRot = 20 - PlayerPrefs.GetFloat("addGun0Spread");
+        }
+
+        if (PlayerPrefs.HasKey("addGun0Distance"))
+        {
+            Guns.hitDistance = 25 + PlayerPrefs.GetInt("addGun0Distance");
+        }
+        else Guns.hitDistance = 25;
     }
 
     void Update()
@@ -120,7 +131,15 @@ public class GameManager : MonoBehaviour
 
         } else
         SceneManager.LoadScene("Level " + level);
-        Guns.hitDistance = 22;
+        if (PlayerPrefs.HasKey("addGun0Distance"))
+        {
+            Guns.hitDistance = 25 + PlayerPrefs.GetInt("addGun0Distance");
+        }
+        if (PlayerPrefs.HasKey("addGun0Spread"))
+        {
+            RayShooter.randomRot = 20 - PlayerPrefs.GetFloat("addGun0Spread");
+        }
+
     }
 
     public void RestartLevel()

@@ -12,7 +12,7 @@ public class Guns : MonoBehaviour
     public Button btn1;
     public Button btn2;
 
-    public static int hitDistance = 25;
+    public static int hitDistance;
     public static Vector3 sizeColliderPlate;
 
     public AudioSource audioPlayer;
@@ -26,11 +26,6 @@ public class Guns : MonoBehaviour
     {
         audioPlayer = GetComponent<AudioSource>();
         sizeColliderPlate = new Vector3(1.2f, 7, 1.2f);
-
-        if (PlayerPrefs.HasKey("addGun0Distance"))
-        {
-            hitDistance = 22 + PlayerPrefs.GetInt("addGun0Distance");
-        }
     }
 
 
@@ -79,8 +74,8 @@ public class Guns : MonoBehaviour
         gun2.SetActive(false);
 
         //weapon characteristics
-        hitDistance = 22 + PlayerPrefs.GetInt("addGun0Distance");
-        RayShooter.randomRot = 2 - PlayerPrefs.GetFloat("addGun0Spread");
+        hitDistance = 25 + PlayerPrefs.GetInt("addGun0Distance");
+        RayShooter.randomRot = 20 - PlayerPrefs.GetFloat("addGun0Spread");
         sizeColliderPlate = new Vector3(1.2f, 7, 1.2f);
         gunSelect = 0;
         ProgressBar.speedRadial = 5;    
@@ -94,7 +89,7 @@ public class Guns : MonoBehaviour
 
         //weapon characteristics
         hitDistance = 40 + PlayerPrefs.GetInt("addGun1Distance");
-        RayShooter.randomRot = 2 - PlayerPrefs.GetFloat("addGun1Spread");
+        RayShooter.randomRot = 20 - PlayerPrefs.GetFloat("addGun1Spread");
         sizeColliderPlate = new Vector3(2.5f, 10f, 2.5f);
         gunSelect = 1;
         ProgressBar.speedRadial = 3;
@@ -108,7 +103,7 @@ public class Guns : MonoBehaviour
 
         //weapon characteristics
         hitDistance = 100 + PlayerPrefs.GetInt("addGun2Distance");
-        RayShooter.randomRot = 2 - PlayerPrefs.GetFloat("addGun2Spread");
+        RayShooter.randomRot = 20 - PlayerPrefs.GetFloat("addGun2Spread");
         sizeColliderPlate = new Vector3(1.5f, 8, 1.5f);
         gunSelect = 2;
         ProgressBar.speedRadial = 4;

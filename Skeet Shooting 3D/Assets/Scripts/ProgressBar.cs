@@ -12,6 +12,7 @@ public class ProgressBar : MonoBehaviour
 
     void FixedUpdate()
     {
+
         if (currentAmount < 100 && RayShooter.inAim)
         {
             currentAmount += 1 * speedRadial;

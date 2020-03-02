@@ -20,11 +20,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         //RotateCamPC();
         RotateCamAndroid();
-
-
     }
 
     private void RotateCamPC()
@@ -57,7 +54,6 @@ public class PlayerController : MonoBehaviour
             player.eulerAngles = new Vector3(dirX, dirY, 0.0f);
         }
     }
-
     }
 
 
